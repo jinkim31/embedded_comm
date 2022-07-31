@@ -11,6 +11,7 @@ extern "C"
 
 #define EC_TABLE_TYPE_N 3
 
+typedef unsigned char uint8_t;
 typedef float float32_t;
 typedef double float64_t;
 
@@ -46,17 +47,15 @@ typedef struct EC_Entry
 
 typedef struct EC_Table
 {
-    EC_TableType type;
-    unsigned int len;
-    EC_Entry* entries;
+    const EC_TableType type;
+    const unsigned int len;
+    EC_Entry* const entries;
 }EC_Table;
 
 typedef struct EC_Comm
 {
-    EC_Table tables[EC_TABLE_TYPE_N];
+    const EC_Table tables[EC_TABLE_TYPE_N];
 }EC_Comm;
-
-void EC_assignTypeTable(EC_Comm* comm, EC_TableType type, unsigned int len, EC_Entry entries[]);
 
 #ifdef __cplusplus
 }

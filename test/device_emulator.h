@@ -8,7 +8,7 @@ using namespace std;
 
 class DeviceEmulator{
 public:
-    DeviceEmulator();
+
 private:
     uint8_t uint8Data[3] = {10,20,30};
     float32_t float32Data[3] = {1.1,2.2,3.3};
