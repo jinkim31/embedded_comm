@@ -3,6 +3,7 @@
 
 DeviceEmulator::DeviceEmulator()
 {
+
     EC_Entry int8Entries[] ={
     {&uint8Data[0], EC_READ_WRITE},
     {&uint8Data[1], EC_READ_WRITE},
@@ -21,11 +22,13 @@ DeviceEmulator::DeviceEmulator()
     {&float64Data[2], EC_READ_WRITE},
     };
 
-    EC_assignTypeTable(&comm, EC_UINT8, 3, int8Entries);
-    EC_assignTypeTable(&comm, EC_FLOAT32, 3, float32Entries);
-    EC_assignTypeTable(&comm, EC_FLOAT64, 3, float64Entries);
+    EC_Table uint8Table = {EC_UINT8, 3, int8Entries};
+    EC_Table float32Table = {EC_FLOAT32, 3, float32Entries};
+    EC_Table float64Table = {EC_FLOAT64, 3, float64Entries};
 
-    printf("%d\n", *(uint8_t*)comm.tables[EC_UINT8].entries[1].ptr);
-    printf("%f\n", *(float32_t*)comm.tables[EC_FLOAT32].entries[1].ptr);
-    printf("%lf\n", *(float64_t*)comm.tables[EC_FLOAT64].entries[1].ptr);
+    comm.tables = {uint8Table, float32Table, float64Table};
+
+    printf("%d\n", *(uint8_t*)comm.tables[EC_UINT8].entries[2].ptr);
+    printf("%f\n", *(float32_t*)comm.tables[EC_FLOAT32].entries[2].ptr);
+    printf("%lf\n", *(float64_t*)comm.tables[EC_FLOAT64].entries[2].ptr);
 }

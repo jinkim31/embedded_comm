@@ -54,7 +54,7 @@ typedef struct EC_Table
 
 typedef struct EC_Comm
 {
-    const EC_Table tables[EC_TABLE_TYPE_N];
+    EC_Table tables[EC_TABLE_TYPE_N];
 }EC_Comm;
 
 #ifdef __cplusplus

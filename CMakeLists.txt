@@ -4,5 +4,6 @@ project(embedded_comm)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(test
-        test/test.c
-        comm/slave.c)
+        test/test.cpp
+        comm/slave.c
+        test/device_emulator.cpp)
