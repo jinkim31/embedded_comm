@@ -9,18 +9,6 @@ extern "C"
 #include <stdlib.h>
 #include <string.h>
 
-#define EC_TABLE_TYPE_N 3
-
-typedef unsigned char uint8_t;
-typedef float float32_t;
-typedef double float64_t;
-
-typedef enum EC_TableType{
-    EC_UINT8,
-    EC_FLOAT32,
-    EC_FLOAT64,
-}EC_TableType;
-
 typedef enum EC_Access
 {
     EC_INACCESSIBLE = 0,   // 0b00
@@ -45,16 +33,18 @@ typedef struct EC_Entry
     const EC_Access access;
 }EC_Entry;
 
-typedef struct EC_Table
+typedef struct EC_TypeTable
 {
-    const EC_TableType type;
-    const unsigned int len;
+    const int typeID;
+    const size_t typesize;
     EC_Entry* const entries;
-}EC_Table;
+    const size_t nEntry;
+}EC_TypeTable;
 
 typedef struct EC_Comm
 {
-    EC_Table tables[EC_TABLE_TYPE_N];
+    EC_TypeTable* const typeTables;
+    const size_t nTypeTable;
 }EC_Comm;
 
 #ifdef __cplusplus
